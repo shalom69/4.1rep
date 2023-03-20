@@ -1,6 +1,9 @@
 package ru.netology.web;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
@@ -13,7 +16,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.web.DataGenerator.Registration.generateDate;
 import static ru.netology.web.DataGenerator.Registration.generateUser;
-
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 public class CardDeliveryTest {
 
     @BeforeEach
@@ -21,7 +24,10 @@ public class CardDeliveryTest {
         open("http://localhost:9999");
         $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
     }
-
+    @AfterAll
+    static void tearDownAll() {
+        SelenideLogger.removeListener("allure");
+    }
     @Test
     void shouldSendFormValid() {
         User user = generateUser();
