@@ -27,7 +27,7 @@ public class CardDeliveryTest {
     @BeforeAll
     static void setUpAll() {
         SelenideLogger.addListener("allure", new AllureSelenide());
-    {
+    }
     @AfterAll
     static void tearDownAll() {
         SelenideLogger.removeListener("allure");
