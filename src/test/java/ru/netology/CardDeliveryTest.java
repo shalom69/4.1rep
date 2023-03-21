@@ -24,6 +24,10 @@ public class CardDeliveryTest {
         open("http://localhost:9999");
         $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
     }
+    @BeforeAll
+    static void setUpAll() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    {
     @AfterAll
     static void tearDownAll() {
         SelenideLogger.removeListener("allure");
